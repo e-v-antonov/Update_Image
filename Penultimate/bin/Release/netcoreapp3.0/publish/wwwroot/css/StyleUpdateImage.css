@@ -1,0 +1,17 @@
+﻿body {
+    margin: 0;
+}
+
+
+.card {
+    margin-top: 35px;
+}
+
+#btn-open {
+    /*margin-top: 15px;*/
+    margin-bottom: 30px;
+}
+
+.main {
+    margin-top: 35px;
+}

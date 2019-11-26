@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Действия с изображением";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <environment include="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    </environment>
+    <title>Действия с изображением</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <h2 class="col-md-auto">Загрузить изображение и показать его</h2>
+        </div>
+        <!-- /.row -->
+        <form method="post" asp-controller="ActionPicture" asp-action="UploadImage" enctype="multipart/form-data">
+            <div class="form-group row">
+                <div class="col-4">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="pic" />
+                        <label class="custom-file-label" for="customFile">Выберите файл</label>
+                    </div>
+                    @*<input class="form-control-file" type="file" name="pic" />*@
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="text" name="fullName" />
+                </div>
+                <div class="col-4">
+                    <input class="btn btn-primary" type="submit" name="Go" />
+                </div>
+            </div>
+        </form>
+
+        <div class="row justify-content-md-center">
+            <h2 class="col-md-auto">Показать изображение</h2>
+        </div>
+        <!-- /.row -->
+        <form method="get" asp-controller="ActionPicture" asp-action="UpdateImage" enctype="multipart/form-data">
+            <div class="form-group row">
+                <div class="col-6">
+                    <input class="form-control" type="text" name="nameImage" />
+                </div>
+                <div class="col-6">
+                    <input class="btn btn-primary" type="submit" name="ChoiceImage" />
+                </div>
+            </div>
+        </form>
+
+
+        <div class="row justify-content-md-center">
+            <h2 class="col-md-auto">Скачать изображение</h2>
+        </div>
+        <!-- /.row -->
+        <form method="get" asp-controller="ActionPicture" asp-action="DownloadImage" enctype="multipart/form-data">
+            <div class="form-group row">
+                <div class="col-6">
+                    <input class="form-control" type="text" name="pathImage" />
+                </div>
+                <div class="col-6">
+                    <input class="btn btn-primary" type="submit" name="downloadImage" />
+                </div>
+            </div>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Список загруженных файлов</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.ListImage)
+                {
+                    <tr>
+                        <td>
+                            @item
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.container -->
+</body>
+</html>
+

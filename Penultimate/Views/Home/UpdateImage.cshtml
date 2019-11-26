@@ -1,0 +1,190 @@
+﻿@{
+    ViewData["Title"] = "Изменение изображения";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <environment include="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        <link rel="stylesheet" href="~/css/StyleSheet.css" />
+        <link rel="stylesheet" href="~/css/StyleUpdateImage.css" />
+    </environment>
+    <title>Изменение изображения</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <button id="btn-open" type="button" class="btn btn-info" data-toggle="collapse" data-target="#content">
+                    Работа с изображением
+                </button>
+            </div>
+
+            <div class="col-2">
+                @using (Html.BeginForm("SaveImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                {
+                    <input class="btn btn-primary" type="submit" value="Сохранить" />
+                }
+            </div>
+        </div>
+
+        <div id="content" class="collapse in">
+
+            <div class="card card-body bg-warning border-dark">
+                @using (Html.BeginForm("UpdateImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-4">
+                            <div class="row justify-content-center align-items-center">
+                                Яркость
+                            </div>
+                            <div class="row">
+                                <input class="custom-range bg-warning" type="range" min="-10" max="10" step="1" value="0" name="brightness" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row justify-content-center align-items-center">
+                                Контрастность
+                            </div>
+                            <div class="row">
+                                <input class="custom-range" type="range" min="-10" max="10" step="1" value="0" name="contrast" />
+                            </div>
+                        </div>
+                        <div class="col-md-auto">
+                            <input class="btn btn-primary" type="submit" name="ChoiceImage" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            <div class="card card-body bg-warning border-dark">
+                @using (Html.BeginForm("UpdateColorImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-3">
+                            <div class="row justify-content-center align-items-center">
+                                Голубой-Красный
+                            </div>
+                            <div class="row">
+                                <input class="custom-range" type="range" min="-10" max="10" step="1" value="0" name="blueRed" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row justify-content-center align-items-center">
+                                Пурпурный-Зеленый
+                            </div>
+                            <div class="row">
+                                <input class="custom-range" type="range" min="-10" max="10" step="1" value="0" name="purpleGreen" />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row justify-content-center align-items-center">
+                                Желтый-Синий
+                            </div>
+                            <div class="row">
+                                <input class="custom-range" type="range" min="-10" max="10" step="1" value="0" name="yellowDarkBlue" />
+                            </div>
+                        </div>
+                        <div class="col-md-auto">
+                            <input class="btn btn-primary" type="submit" name="ChoiceImage" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            <div class="card card-body bg-warning border-dark">
+                <div class="row align-items-center">
+                    <div class="col-3 text-center">
+                        @using (Html.BeginForm("UpdateSharpnessImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="sharpness" value="Повышение резкости" />
+                        }
+                    </div>
+                    <div class="col-3 text-center">
+                        @using (Html.BeginForm("UpdateBlurImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="sharpness" value="Размытие" />
+                        }
+                    </div>
+                    <div class="col-3 text-center">
+                        @using (Html.BeginForm("UpdateBlackWhiteImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="blackwhite" value="Черно-белое изображение" />
+                        }
+                    </div>
+                    <div class="col-3 text-center">
+                        @using (Html.BeginForm("UpdateInvertImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="invert" value="Инвертирование цветов" />
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card card-body bg-warning border-dark">
+                <div class="row align-items-center">
+                    <div class="col-4 text-center">
+                        @using (Html.BeginForm("UpdateRotate90Image", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="rotation" value="Поворот изображения на 90" />
+                        }
+                    </div>
+                    <div class="col-4 text-center">
+                        @using (Html.BeginForm("UpdateRotate180Image", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="rotation" value="Поворот изображения на 180" />
+                        }
+                    </div>
+                    <div class="col-4 text-center">
+                        @using (Html.BeginForm("UpdateRotate270Image", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="rotation" value="Поворот изображения на 270" />
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card card-body bg-warning border-dark" style="margin-bottom: 50px">
+                <div class="row align-items-center">
+                    <div class="col-6 text-center">
+                        @using (Html.BeginForm("UpdateFlipXImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="rotation" value="Отражение по X" />
+                        }
+                    </div>
+                    <div class="col-6 text-center">
+                        @using (Html.BeginForm("UpdateFlipYImage", "UpdateImage", FormMethod.Get, new { enctype = "multipart/form-data" }))
+                        {
+                            <input class="btn btn-primary" type="submit" name="rotation" value="Отражение по Y" />
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <form name="main">
+            <div id="update-image">
+                <img class="img-fluid" src="@ViewBag.ImageData">
+                <img class="img-fluid" src="@ViewData["imageLocation"]" name="img" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
